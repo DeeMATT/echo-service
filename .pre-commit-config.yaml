@@ -1,0 +1,75 @@
+fail_fast: true
+repos:
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        description: 'Bandit is a tool for finding common security issues in Python code'
+        entry: bandit
+        language: python
+        language_version: python3
+        types: [python]
+
+      - id: isort
+        name: isort-local
+        entry: python -m isort .
+        language: system
+        types: [python]
+        pass_filenames: true
+
+  #       - id: mypy
+  #         name: mypy
+  #         language: system
+  #         entry: mypy
+  #         types: [python]
+  #         pass_filenames: true
+
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+          [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=.pylintrc" # Link to your config file
+          ]
+
+      - id: flake8
+        name:  linting
+        language: system
+        entry: python -m flake8
+        pass_filenames: true
+        types: [python]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-toml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: name-tests-test
+      - id: debug-statements
+
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        args: [
+            "--config",
+            "pyproject.toml" 
+          ]
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: '1.2.0'
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+      - id: poetry-export
+        args: ["-f", "requirements.txt", "-o", "requirements.txt"]
