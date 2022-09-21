@@ -19,7 +19,8 @@ The /rate endpoint can be used to obtain the critical request rate and to set it
 ## Installation
 
 #### Prerequisites
-- Redis Server  
+- Python ^3.10
+- Redis Server
 
 ### On Local
 Install dependencies and start app on local
@@ -27,13 +28,13 @@ Install dependencies and start app on local
 
 
 ```bash
-  >> pip install poetry        |# install dependency manager|
+  >> pip3 install poetry        |# install dependency manager|
   >> poetry shell              |# activate virtual environment for app dependencies|
   >> poetry install            |# install app dependencies| 
 
   >> python3 main.py           |# start the application|
 
-  voila!!!
+  voila!!! You can now make your API requests according to the API Reference section below
 ```
   
 ### Using Docker
@@ -43,7 +44,7 @@ Install dependencies and start app using docker
   >> chmod +x deploy.sh        |# make the script executable|
   >> sh deploy.sh              |# execute docker shell script to create the docker containers|
 
-  voila!!!
+  voila!!! You can now make your API requests according to the API Reference section below
 ```
 ## Environment Variables
 
