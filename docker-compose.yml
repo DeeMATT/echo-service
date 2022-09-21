@@ -1,0 +1,36 @@
+version: '3'
+services:
+    
+  api: 
+    build: .
+    image: echo-service
+    container_name: echo-service-api
+    restart: on-failure
+    ports:
+      - '127.0.0.1:8000:8000'
+    env_file:
+      - .env
+    depends_on:
+      - cache
+    links:
+      - cache
+    networks:
+      - echo-service-net
+
+  redis-cache:
+    image: redis:7.0.4-alpine
+    container_name: echo-service-cache
+    restart: unless-stopped
+    volumes:
+      - cache:/data
+    command: redis-server 
+    networks:
+      - echo-service-net
+
+volumes:
+  cache:
+    driver: local
+
+networks:
+  echo-service-net:
+    driver: bridge
