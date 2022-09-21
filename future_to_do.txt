@@ -1,0 +1,15 @@
+
+QUESTION:
+
+Without implementing them, suggest possible future improvements of your solution,
+especially for production cases with high loads.
+
+
+ANSWER:
+For production use-cases with heavy or very spiky load, a possible improvement would be to offload the rate limiting functionality to an external service so as to prevent resources from being wasted within the application. 
+
+Ideally, this follows the single responsibility principle, and at the coarse-grained architecture level, we may require that the rate limiting functionality is provided by an external component that has this responsibility.
+
+We can also use an intermediary to buffer the initiation or send requests, perhaps placing the request within a queue.
+
+For example, using some form of proxy or gateway that trips a circuit-breaker when the downstream service is not accepting any more requests.
