@@ -18,12 +18,12 @@ class Settings(BaseSettings):
 
 
 class DevelopmentConfig(Settings):
-    ENV: str = "development"
+    ENV: str = "dev"
     DEBUG: bool = True
 
 
 class ProductionConfig(Settings):
-    ENV: str = "production"
+    ENV: str = "prod"
     DEBUG: bool = False
 
 

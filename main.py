@@ -9,7 +9,7 @@ def main(settings: Settings = Depends(config)):
         app="echo_service.core:app",
         host=config.APP_HOST,
         port=config.APP_PORT,
-        reload=True if config.ENV != "production" else False,
+        reload=True if config.ENV != "prod" else False,
         workers=1,
     )
 
